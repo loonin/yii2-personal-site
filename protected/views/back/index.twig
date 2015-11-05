@@ -1,0 +1,63 @@
+{% extends '@app/views/layouts/admin.twig' %}
+
+{% block content %}
+	{% include '@app/views/includes/exit.twig' %}
+
+	<a href="{{ url('back/add') }}">
+	<button type="button" class="btn btn-success btn-lg add-button">
+		Добавить работу
+	</button>
+	</a>
+	<h1>Список работ</h1>
+	{% if (app.session.hasFlash('success')) %}
+		<div class="alert alert-success">
+			{{ app.session.getFlash('success') }}
+		</div>
+	{% elseif (app.session.hasFlash('error')) %}
+		<div class="alert alert-danger">
+			{{ app.session.getFlash('error') }}
+		</div>
+	{% endif %}
+	<table class="t-main">
+		<thead>
+			<th>Изображение</th>
+			<th>Название</th>
+			<th>Действия</th>
+		</thead>
+		<tbody id="sortable">
+			{% for item in items %}
+			<tr class="ui-state-default" data-id="{{ item.id }}">
+				<td>
+					{% if item.coverImage %}
+						<img src="{{ item.coverImage.getThumbnail() }}">
+					{% endif %}
+				</td>
+				<td>{{ item.title }}</td>
+				<td>
+					<div class="btn-group">
+						<a href="{{ url('back/edit', {'id' : item.id}) }}" style="display: inline-block">
+							<button type="button" class="btn btn-default btn-sm">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</button>
+						</a>
+						<a href="{{ url('back/delete', {'id' : item.id}) }}" style="display: inline-block">
+							<button type="button" class="btn btn-default btn-sm">
+								<span class="glyphicon glyphicon-trash"></span>
+							</button>
+						</a>
+					</div>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class="btn-group bottom-buttons-group">
+		<span class="btn btn-success btn-md" id="items-update">
+			Сохранить
+		</span>
+		<span class="btn btn-default btn-md" id="items-cancel">
+			Отменить
+		</span>
+	</div>
+
+{% endblock %}

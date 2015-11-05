@@ -1,0 +1,76 @@
+{% extends '@app/views/layouts/admin.twig' %}
+
+{% block content %}
+	{% include '@app/views/includes/exit.twig' %}
+
+	<a href="{{ url('/back') }}" style="display: inline-block">
+		<button type="button" class="btn btn-success btn-sm add-button">
+			Список всех работ
+		</button>
+	</a>
+
+	<h1>Редактирование работы</h1>
+
+	{% if (app.session.hasFlash('success')) %}
+		<div class="alert alert-success">
+			{{ app.session.getFlash('success') }}
+		</div>
+	{% elseif (app.session.hasFlash('error')) %}
+		<div class="alert alert-danger">
+			{{ app.session.getFlash('error') }}
+		</div>
+	{% endif %}
+
+	<div class="b-item-form">
+		{{ use('yii/widgets/ActiveForm') }}
+
+		{% set form = active_form_begin({
+		'options' : {'enctype' : 'multipart/form-data'}
+		}) %}
+
+		{{ form.field(model, 'title') | raw }}
+		{{ form.field(model, 'url') | raw }}
+
+		<table class="b-file-upload-table">
+			<tr>
+				<td>
+					<label for="additemform-title" class="control-label">Обложка</label><br>
+					<img src="{{ item.coverImage.getThumbnail() }}"><br>
+					<input type="file" name="img_cover">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="additemform-title" class="control-label">Главное изображение</label><br>
+					<img src="{{ item.mainImage.getThumbnail() }}"><br>
+					<input type="file" name="img_main">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="additemform-title" class="control-label">Дополнительные изображения:</label><br>
+					<div class="extra-images">
+					{% for image in item.extraImages %}
+						<div class="have-siblings" data-id="{{ image.id }}">
+							<div class="close glyphicon glyphicon-remove"></div>
+							<img src="{{ image.getThumbnail() }}">
+						</div>
+					{% endfor %}
+					</div>
+					<label for="additemform-title" class="control-label">Добавить дополнительные изображения:</label>
+					<input type="file" name="img1" accept="image/*">
+					<input type="file" name="img2" accept="image/*">
+					<input type="file" name="img3" accept="image/*">
+					<input type="file" name="img4" accept="image/*">
+					<input type="file" name="img5" accept="image/*">
+				</td>
+			</tr>
+		</table>
+
+		<div class="form-group">
+			<input type="submit" value="Сохранить" class="btn btn-primary" />
+		</div>
+
+		{{ active_form_end() }}
+	</div>
+{% endblock %}

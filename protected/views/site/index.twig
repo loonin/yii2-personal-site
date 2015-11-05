@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>HTML5</title>
+	<link href="/assets/css/site.css" type="text/css" rel="stylesheet">
+
+	<!-- BEGIN !!!!!!!!!!!!!!! jScrollPane !!!!!!!!!!!!!!! -->
+	<!-- styles needed by jScrollPane -->
+	<link type="text/css" href="/assets/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+
+	<!-- latest jQuery -->
+	<script type="text/javascript" src="/assets/js/vendor/jquery-1.11.1.min.js"></script>
+
+	<!-- the mousewheel plugin - optional to provide mousewheel support -->
+	<script type="text/javascript" src="/assets/js/vendor/jquery.mousewheel.js"></script>
+
+	<!-- the jScrollPane script -->
+	<script type="text/javascript" src="/assets/js/vendor/jquery.jscrollpane.min.js"></script>
+	<!-- END !!!!!!!!!!!!!!! jScrollPane !!!!!!!!!!!!!!! -->
+
+
+	<link rel="stylesheet" href="/assets/lightbox/css/lightbox.css">
+	<link rel="stylesheet" href="/assets/css/wave-preloader.css">
+
+	<script type="text/javascript" src="/assets/js/vendor/lodash.compat.min.js"></script>
+	<script type="text/javascript" src="/assets/js/vendor/handlebars-v2.0.0.js"></script>
+
+	<script src="/assets/lightbox/js/lightbox.min.js"></script>
+
+	<script type="text/javascript" src="/assets/js/main.js"></script>
+</head>
+<body>
+<div class="b-feedback-wrapper">
+	<div class="sub-wrapper">
+		<div class="b-feedback">
+			<div class="form">
+				<form method="post" enctype="multipart/form-data">
+					<input type="text" class="element" name="name" value="Ваше имя*" data-value="Ваше имя*">
+					<input type="text" class="element" name="email" value="Электронная почта*" data-value="Электронная почта*">
+					<input type="text" class="element" name="phone" value="Телефон" data-value="Телефон">
+					<textarea class="element area" data-value="Сообщение*" name="message">Сообщение*</textarea>
+					<input class="button" type="submit" value="Отправить" name="submit">
+				</form>
+			</div>
+			<div class="feedback-button">
+				Обратная связь
+			</div>
+		</div>
+	</div>
+</div>
+<div class="b-under-feedback"></div>
+<div class="b-main">
+	<div class="b-header">
+		<div class="left-side">
+			<div class="name">Алексей Лунин</div>
+			<div class="sub-name">веб-разработчик</div>
+		</div>
+	</div>
+	<div class="b-body">
+		{% set order = 0 %}
+		{% for item in items %}
+			{% if order > 2 %}
+				{% set order = 1 %}
+			{% else %}
+				{% set order = order + 1 %}
+			{% endif %}
+		<div class="b-card" data-order="{{ order }}" data-id="{{ item.id }}">
+			<img src="{{ item.coverImage.getImageUrl() }}">
+			<div class="overlay">
+				<div class="name">{{ item.title }}</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<div class="b-footer">
+		<div class="left-side">
+			<span class="at">@</span><span class="mail">mail@loonin.ru</span>
+		</div>
+		<div class="right-side">
+			<div class="copyright">© 2008 - 2014</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

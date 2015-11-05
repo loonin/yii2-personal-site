@@ -1,0 +1,30 @@
+#sortable td:hover {
+  cursor: move;
+}
+#sortable td:first-child {
+  width: 200px;
+}
+#sortable td:nth-child(2) {
+  width: 600px;
+}
+#sortable td:nth-child(3) {
+  width: 180px;
+}
+.ui-state-highlight {
+  height: 120px;
+  line-height: 1.2em;
+  border: 0;
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  background: #fff;
+  border: 0;
+  color: #555555;
+  font-weight: normal;
+}
+.close-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
