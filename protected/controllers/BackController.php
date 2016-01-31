@@ -191,7 +191,12 @@ class BackController extends Controller
 				->all();
 
 			foreach ($images as $image) {
-				unlink(\Yii::$app->basePath . '/..' . $image->getImageUrl());
+				$url = \Yii::$app->basePath . '/..' . $image->getImageUrl();
+				
+				if (file_exists($url)) {
+					unlink($url);
+				}
+				
 				$image->delete();
 			}
 
