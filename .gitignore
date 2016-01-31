@@ -31,5 +31,6 @@ phpunit.phar
 /assets/*
 !/assets/bootstrap/
 !/assets/css/
+!/assets/js/
 !/assets/fonts/
 !/assets/lightbox/

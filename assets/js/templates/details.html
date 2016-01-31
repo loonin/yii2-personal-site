@@ -1,0 +1,30 @@
+<div class="b-details">
+	<div class="left-side">
+		<div class="header">
+			{{title}}
+		</div>
+		<div class="img">
+			<img src="{{image}}">
+		</div>
+	</div>
+	<div class="right-side">
+		<a href="{{url}}" class="go-to" target="_blank">
+			Перейти на сайт
+		</a>
+		<div class="more-images js-more-images">
+			{{#list extra-images}}
+				<span class="more-image js-for-details">
+					<a href="{{extra-image-big}}" data-lightbox="roadtrip">
+						<img src="{{extra-image-small}}">
+					</a>
+				</span>
+			{{/list}}
+		</div>
+	</div>
+	<div class="bottom">
+		<div class="button">
+			<img src="/images/slide-up.jpg"><br>
+			Свернуть
+		</div>
+	</div>
+</div>
